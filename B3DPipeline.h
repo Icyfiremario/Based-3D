@@ -4,13 +4,27 @@
 #include <vector>
 #include "B3DDevice.h"
 
-struct PipelineConfigInfo {};
+struct PipelineConfigInfo
+{
+	VkViewport viewport;
+	VkRect2D scissor;
+	VkPipelineViewportStateCreateInfo viewportInfo;
+	VkPipelineInputAssemblyStateCreateInfo inputAssemblyInfo;
+	VkPipelineRasterizationStateCreateInfo rasterizationInfo;
+	VkPipelineMultisampleStateCreateInfo multisampleInfo;
+	VkPipelineColorBlendAttachmentState colorBlendAttachment;
+	VkPipelineColorBlendStateCreateInfo colorBlendInfo;
+	VkPipelineDepthStencilStateCreateInfo depthStencilInfo;
+	VkPipelineLayout pipelineLayout = nullptr;
+	VkRenderPass renderPass = nullptr;
+	uint32_t subpass = 0;
+};
 
 class B3DPipeline
 {
 	public:
 		B3DPipeline(B3DDevice &device, const std::string& vertFilePath, const std::string& fragFilePath, const PipelineConfigInfo &configInfo);
-		~B3DPipeline() {}
+		~B3DPipeline();
 
 		B3DPipeline(const B3DPipeline&) = delete;
 		void operator=(const B3DPipeline&) = delete;
