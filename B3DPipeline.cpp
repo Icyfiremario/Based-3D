@@ -125,7 +125,7 @@ void B3DPipeline::createGraphicsPipeline(const std::string& vertFilePath, const 
 	shaderStages[0].module = vertShaderModule;
 	shaderStages[0].pName = "main";
 	shaderStages[0].flags = 0;
-	shaderStages[0].pName = nullptr;
+	shaderStages[0].pNext = nullptr;
 	shaderStages[0].pSpecializationInfo = nullptr;
 
 	shaderStages[1].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
@@ -133,7 +133,7 @@ void B3DPipeline::createGraphicsPipeline(const std::string& vertFilePath, const 
 	shaderStages[1].module = fragShaderModule;
 	shaderStages[1].pName = "main";
 	shaderStages[1].flags = 0;
-	shaderStages[1].pName = nullptr;
+	shaderStages[1].pNext = nullptr;
 	shaderStages[1].pSpecializationInfo = nullptr;
 
 	VkPipelineVertexInputStateCreateInfo vertexInputInfo{};

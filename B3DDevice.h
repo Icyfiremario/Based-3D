@@ -25,7 +25,7 @@ class B3DDevice
 {
 	public:
 
-#ifndef NDEBUG		
+#ifndef _DEBUG		
 		const bool enableValidationLayers = false;
 #else
 		const bool enableValidationLayers = true;
