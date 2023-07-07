@@ -131,7 +131,7 @@ void B3DDevice::pickPhysicalDevice()
 		throw std::runtime_error("failed to find Vulkan compatable GPUs! Check your GPU manufactures website to get the latest drivers.");
 	}
 
-	std::cout << "DEvice count: " << deviceCount << std::endl;
+	std::cout << "Device count: " << deviceCount << std::endl;
 	std::vector<VkPhysicalDevice> devices(deviceCount);
 	vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
