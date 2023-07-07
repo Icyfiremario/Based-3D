@@ -1,7 +1,9 @@
 #include "B3DPipeline.h"
+
 #include <fstream>
 #include <stdexcept>
 #include <iostream>
+#include <cassert>
 
 B3DPipeline::B3DPipeline(B3DDevice& device, const std::string& vertFilePath, const std::string& fragFilePath, const PipelineConfigInfo& configInfo) : B3DPipelineDevice{ device }
 {
@@ -113,6 +115,9 @@ std::vector<char> B3DPipeline::readFile(const std::string& filePath)
 
 void B3DPipeline::createGraphicsPipeline(const std::string& vertFilePath, const std::string& fragFilePath, const PipelineConfigInfo& configInfo)
 {
+	assert(configInfo.pipelineLayout != VK_NULL_HANDLE && "Connot create graphics pipeline! No piplineLayout provided in config");
+	assert(configInfo.renderPass != VK_NULL_HANDLE && "Connot create graphics pipeline! No renderPass provided in config");
+
 	auto vertCode = readFile(vertFilePath);
 	auto fragCode = readFile(fragFilePath);
 
