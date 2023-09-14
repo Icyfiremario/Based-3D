@@ -17,6 +17,9 @@
       <UniqueIdentifier>{4685bb67-cca7-48e6-88ce-9b6a493d1c1c}</UniqueIdentifier>
       <Extensions>glsl;hlsl;vert;frag;spv;</Extensions>
     </Filter>
+    <Filter Include="Git Files">
+      <UniqueIdentifier>{7f558650-1388-4e46-a1a1-cf385423bef4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,6 +57,9 @@
     <ClInclude Include="B3DSwapChain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="simple_shader.vert">
@@ -71,6 +77,13 @@
     <None Include="simple_shader.vert.spv">
       <Filter>Shaders</Filter>
     </None>
-    <None Include=".gitignore" />
+    <None Include=".gitignore">
+      <Filter>Git Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Based 3D1.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
