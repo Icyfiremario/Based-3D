@@ -192,6 +192,7 @@
     <ClInclude Include="Game.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
     <None Include="ShaderCompile.bat" />
     <None Include="simple_shader.frag" />
     <None Include="simple_shader.frag.spv" />

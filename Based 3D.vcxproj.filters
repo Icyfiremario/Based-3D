@@ -71,5 +71,6 @@
     <None Include="simple_shader.vert.spv">
       <Filter>Shaders</Filter>
     </None>
+    <None Include=".gitignore" />
   </ItemGroup>
 </Project>
