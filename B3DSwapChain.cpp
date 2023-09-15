@@ -273,7 +273,7 @@ void B3DSwapChain::createRenderPass()
 
 	VkAttachmentReference colorAttachmentRef = {};
 	colorAttachmentRef.attachment = 0;
-	colorAttachmentRef.layout = VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL;
+	colorAttachmentRef.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
 	VkSubpassDescription subpass = {};
 	subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
@@ -282,7 +282,6 @@ void B3DSwapChain::createRenderPass()
 	subpass.pDepthStencilAttachment = &depthAttachmentRef;
 
 	VkSubpassDependency dependency = {};
-
 	dependency.dstSubpass = 0;
 	dependency.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
 	dependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
@@ -379,6 +378,13 @@ VkPresentModeKHR B3DSwapChain::chooseSwapPresentMode(const std::vector<VkPresent
 			return availablePresentMode;
 		}
 	}
+
+	// for (const auto &availablePresentMode : availablePresentModes) {
+	//   if (availablePresentMode == VK_PRESENT_MODE_IMMEDIATE_KHR) {
+	//     std::cout << "Present mode: Immediate" << std::endl;
+	//     return availablePresentMode;
+	//   }
+	// }
 
 	std::cout << "Present mode: V-Sync" << std::endl;
 

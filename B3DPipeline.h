@@ -6,8 +6,12 @@
 
 struct PipelineConfigInfo
 {
+	PipelineConfigInfo(const PipelineConfigInfo&) = delete;
+	PipelineConfigInfo& operator=(const PipelineConfigInfo&) = delete;
+
 	VkViewport viewport;
 	VkRect2D scissor;
+	VkPipelineViewportStateCreateInfo viewportInfo;
 	VkPipelineInputAssemblyStateCreateInfo inputAssemblyInfo;
 	VkPipelineRasterizationStateCreateInfo rasterizationInfo;
 	VkPipelineMultisampleStateCreateInfo multisampleInfo;
@@ -28,7 +32,7 @@ class B3DPipeline
 		B3DPipeline(const B3DPipeline&) = delete;
 		void operator=(const B3DPipeline&) = delete;
 
-		static PipelineConfigInfo deafultPipelineConfigInfo(uint32_t width, uint32_t height);
+		static void deafultPipelineConfigInfo(PipelineConfigInfo& configInfo, uint32_t width, uint32_t height);
 
 	private:
 

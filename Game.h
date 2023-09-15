@@ -5,12 +5,21 @@
 #include "B3DDevice.h"
 #include "B3DSwapChain.h"
 
+#include <memory>
+#include <vector>
+#include <stdexcept>
 
 class Game
 {
 	public:
 		static constexpr int WIDTH = 800;
 		static constexpr int HEIGHT = 600;
+
+		Game();
+		~Game();
+
+		Game(const Game &) = delete;
+		Game &operator=(const Game &) = delete;
 
 		void run();
 
@@ -20,5 +29,13 @@ class Game
 		B3DWindow gameWindow{ WIDTH, HEIGHT, "Based Engine 3D" };
 		B3DDevice gameDevice{ gameWindow };
 		B3DSwapChain gameSwapChain{ gameDevice, gameWindow.getExtent() };
-		B3DPipeline gameRenderPipeline{gameDevice, "simple_shader.vert.spv", "simple_shader.frag.spv", B3DPipeline::deafultPipelineConfigInfo(WIDTH, HEIGHT)};
+
+		std::unique_ptr<B3DPipeline> gameRenderPipeline;
+		VkPipelineLayout pipelineLayout;
+		std::vector<VkCommandBuffer> commandBuffers;
+
+		void createPipelineLayout();
+		void createPipeline();
+		void createCommandBuffers();
+		void drawFrame();
 };

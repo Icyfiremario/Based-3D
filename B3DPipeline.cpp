@@ -17,9 +17,9 @@ B3DPipeline::~B3DPipeline()
 	vkDestroyPipeline(B3DPipelineDevice.device(), graphicsPipeline, nullptr);
 }
 
-PipelineConfigInfo B3DPipeline::deafultPipelineConfigInfo(uint32_t width, uint32_t height)
+void B3DPipeline::deafultPipelineConfigInfo(PipelineConfigInfo& configInfo, uint32_t width, uint32_t height)
 {
-	PipelineConfigInfo configInfo{};
+	//PipelineConfigInfo configInfo{};
 
 	configInfo.inputAssemblyInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
 	configInfo.inputAssemblyInfo.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
@@ -34,6 +34,13 @@ PipelineConfigInfo B3DPipeline::deafultPipelineConfigInfo(uint32_t width, uint32
 
 	configInfo.scissor.offset = {0, 0};
 	configInfo.scissor.extent = { width, height };
+
+	VkPipelineViewportStateCreateInfo viewportInfo{};
+	viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+	viewportInfo.viewportCount = 1;
+	viewportInfo.pViewports = &configInfo.viewport;
+	viewportInfo.scissorCount = 1;
+	viewportInfo.pScissors = &configInfo.scissor;
 
 	configInfo.rasterizationInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
 	configInfo.rasterizationInfo.depthClampEnable = VK_FALSE;
@@ -84,8 +91,6 @@ PipelineConfigInfo B3DPipeline::deafultPipelineConfigInfo(uint32_t width, uint32
 	configInfo.depthStencilInfo.stencilTestEnable = VK_FALSE;
 	configInfo.depthStencilInfo.front = {};
 	configInfo.depthStencilInfo.back = {};
-
-	return configInfo;
 }
 
 std::vector<char> B3DPipeline::readFile(const std::string& filePath)
@@ -142,12 +147,12 @@ void B3DPipeline::createGraphicsPipeline(const std::string& vertFilePath, const 
 	vertexInputInfo.pVertexAttributeDescriptions = nullptr;
 	vertexInputInfo.pVertexBindingDescriptions = nullptr;
 
-	VkPipelineViewportStateCreateInfo viewportInfo{};
-	viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
-	viewportInfo.viewportCount = 1;
-	viewportInfo.pViewports = &configInfo.viewport;
-	viewportInfo.scissorCount = 1;
-	viewportInfo.pScissors = &configInfo.scissor;
+	//VkPipelineViewportStateCreateInfo viewportInfo{};
+	//viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+	//viewportInfo.viewportCount = 1;
+	//viewportInfo.pViewports = &configInfo.viewport;
+	//viewportInfo.scissorCount = 1;
+	//viewportInfo.pScissors = &configInfo.scissor;
 
 	VkGraphicsPipelineCreateInfo pipelineInfo{};
 	pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
@@ -155,7 +160,8 @@ void B3DPipeline::createGraphicsPipeline(const std::string& vertFilePath, const 
 	pipelineInfo.pStages = shaderStages;
 	pipelineInfo.pVertexInputState = &vertexInputInfo;
 	pipelineInfo.pInputAssemblyState = &configInfo.inputAssemblyInfo;
-	pipelineInfo.pViewportState = &viewportInfo;
+	//pipelineInfo.pViewportState = &viewportInfo;
+	pipelineInfo.pViewportState = &configInfo.viewportInfo;
 	pipelineInfo.pRasterizationState = &configInfo.rasterizationInfo;
 	pipelineInfo.pMultisampleState = &configInfo.multisampleInfo;
 	pipelineInfo.pColorBlendState = &configInfo.colorBlendInfo;
