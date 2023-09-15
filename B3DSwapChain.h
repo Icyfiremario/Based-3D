@@ -25,6 +25,7 @@ class B3DSwapChain
 		static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
 
 		B3DSwapChain(B3DDevice &deviceRef, VkExtent2D windowExtent);
+		B3DSwapChain(B3DDevice& deviceRef, VkExtent2D windowExtent, std::shared_ptr<B3DSwapChain> previous);
 		~B3DSwapChain();
 
 		B3DSwapChain(const B3DSwapChain&) = delete;
@@ -71,6 +72,8 @@ class B3DSwapChain
 		std::vector<VkFence> inFlightFences;
 		std::vector<VkFence> imagesInFlight;
 
+		std::shared_ptr<B3DSwapChain> oldSwapChain;
+
 		size_t currentFrame = 0;
 
 		void createSwapChain();
@@ -79,6 +82,8 @@ class B3DSwapChain
 		void createRenderPass();
 		void createFrameBuffers();
 		void createSyncObjects();
+
+		void init();
 
 		VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats);
 		VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR>& availablePresentModes);

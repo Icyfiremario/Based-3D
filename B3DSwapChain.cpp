@@ -2,12 +2,14 @@
 
 B3DSwapChain::B3DSwapChain(B3DDevice& deviceRef, VkExtent2D extent) : device{deviceRef}, windowExtent{extent}
 {
-	createSwapChain();
-	createImageViews();
-	createRenderPass();
-	createDepthResources();
-	createFrameBuffers();
-	createSyncObjects();
+	init();
+}
+
+B3DSwapChain::B3DSwapChain(B3DDevice& deviceRef, VkExtent2D extent, std::shared_ptr<B3DSwapChain> previous) : device{ deviceRef }, windowExtent{ extent }, oldSwapChain{previous}
+{
+	init();
+
+	oldSwapChain = nullptr;
 }
 
 B3DSwapChain::~B3DSwapChain()
@@ -159,7 +161,7 @@ void B3DSwapChain::createSwapChain()
 	createInfo.presentMode = presentMode;
 	createInfo.clipped = VK_TRUE;
 
-	createInfo.oldSwapchain = VK_NULL_HANDLE;
+	createInfo.oldSwapchain = oldSwapChain == nullptr ? VK_NULL_HANDLE : oldSwapChain->swapChain;
 
 	if (vkCreateSwapchainKHR(device.device(), &createInfo, nullptr, &swapChain) != VK_SUCCESS)
 	{
@@ -352,6 +354,16 @@ void B3DSwapChain::createSyncObjects()
 			throw std::runtime_error("Failed to create sync objects for a frame!");
 		}
 	}
+}
+
+void B3DSwapChain::init()
+{
+	createSwapChain();
+	createImageViews();
+	createRenderPass();
+	createDepthResources();
+	createFrameBuffers();
+	createSyncObjects();
 }
 
 VkSurfaceFormatKHR B3DSwapChain::chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& availableFormats)

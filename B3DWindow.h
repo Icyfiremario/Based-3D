@@ -36,4 +36,6 @@ class B3DWindow
 		std::string windowName;
 
 		void initWindow();
+
+		static void framebufferResizedCallback(GLFWwindow* window, int width, int height);
 };

@@ -30,7 +30,9 @@ class Game
 
 		B3DWindow gameWindow{ WIDTH, HEIGHT, "Based Engine 3D" };
 		B3DDevice gameDevice{ gameWindow };
-		B3DSwapChain gameSwapChain{ gameDevice, gameWindow.getExtent() };
+
+
+		std::unique_ptr<B3DSwapChain> gameSwapChain;
 
 		std::unique_ptr<B3DPipeline> gameRenderPipeline;
 		VkPipelineLayout pipelineLayout;
@@ -41,8 +43,11 @@ class Game
 		void createPipelineLayout();
 		void createPipeline();
 		void createCommandBuffers();
+		void freeCommandBuffers();
 		void drawFrame();
 		void loadModels();
+		void recreateSwapChain();
+		void recordCommandBuffer(int imageIndex);
 
 		void serpinski(std::vector<B3DModel::Vertex>& vertices, int depth, glm::vec2 left, glm::vec2 right, glm::vec2 top);
 };
