@@ -17,6 +17,7 @@ class B3DModel
 		struct Vertex
 		{
 			glm::vec2 position;
+			glm::vec3 color;
 
 			static std::vector<VkVertexInputBindingDescription> getBindingDecriptions();
 			static std::vector<VkVertexInputAttributeDescription> getAttributeDecriptions();

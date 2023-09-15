@@ -1,8 +1,6 @@
 #include "Game.h"
 #include <iostream>
 
-
-
 Game::Game()
 {
 	loadModels();
@@ -132,9 +130,13 @@ void Game::drawFrame()
 
 void Game::loadModels()
 {
-	std::vector<B3DModel::Vertex> vertices{};
+	std::vector<B3DModel::Vertex> vertices{
+		{{ -0.5f, 0.5f }, {0.03, 0.49, 0.22} },
+		{{ 0.5f, 0.5f }, {0.03, 0.49, 0.22}},
+		{{ 0.0f, -0.5f }, {0.03, 0.49, 0.22}}
+	};
 
-	serpinski(vertices, 5, { -0.5f, 0.5f }, { 0.5f, 0.5f }, { 0.0f, -0.5f });
+	//serpinski(vertices, 5, { -0.5f, 0.5f }, { 0.5f, 0.5f }, { 0.0f, -0.5f });
 
 	gameModel = std::make_unique<B3DModel>(gameDevice, vertices);
 }

@@ -28,7 +28,7 @@ class B3DSwapChain
 		~B3DSwapChain();
 
 		B3DSwapChain(const B3DSwapChain&) = delete;
-		void operator=(const B3DSwapChain&) = delete;
+		B3DSwapChain& operator=(const B3DSwapChain&) = delete;
 
 		VkFramebuffer getFrameBuffer(int index) { return swapChainFrameBuffers[index]; }
 		VkRenderPass getRenderPass() { return renderPass; }

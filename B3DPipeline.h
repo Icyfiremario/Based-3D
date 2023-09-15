@@ -32,7 +32,7 @@ class B3DPipeline
 		~B3DPipeline();
 
 		B3DPipeline(const B3DPipeline&) = delete;
-		void operator=(const B3DPipeline&) = delete;
+		B3DPipeline& operator=(const B3DPipeline&) = delete;
 
 		void bind(VkCommandBuffer commandBuffer);
 

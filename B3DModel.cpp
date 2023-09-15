@@ -52,12 +52,17 @@ std::vector<VkVertexInputBindingDescription> B3DModel::Vertex::getBindingDecript
 
 std::vector<VkVertexInputAttributeDescription> B3DModel::Vertex::getAttributeDecriptions()
 {
-	std::vector<VkVertexInputAttributeDescription> attributeDescritptions(1);
+	std::vector<VkVertexInputAttributeDescription> attributeDescritptions(2);
 
 	attributeDescritptions[0].binding = 0;
 	attributeDescritptions[0].location = 0;
 	attributeDescritptions[0].format = VK_FORMAT_R32G32_SFLOAT;
-	attributeDescritptions[0].offset = 0;
+	attributeDescritptions[0].offset = offsetof(Vertex, position);
+
+	attributeDescritptions[1].binding = 0;
+	attributeDescritptions[1].location = 1;
+	attributeDescritptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
+	attributeDescritptions[1].offset = offsetof(Vertex, color);
 
 	return attributeDescritptions;
 }

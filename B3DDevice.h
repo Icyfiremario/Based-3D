@@ -37,7 +37,7 @@ class B3DDevice
 		~B3DDevice();
 
 		B3DDevice(const B3DDevice&) = delete;
-		void operator=(const B3DDevice&) = delete;
+		B3DDevice& operator=(const B3DDevice&) = delete;
 		B3DDevice(B3DDevice&&) = delete;
 		B3DDevice &operator=(B3DDevice&&) = delete;
 
