@@ -32,6 +32,8 @@ class B3DPipeline
 		B3DPipeline(const B3DPipeline&) = delete;
 		void operator=(const B3DPipeline&) = delete;
 
+		void bind(VkCommandBuffer commandBuffer);
+
 		static void deafultPipelineConfigInfo(PipelineConfigInfo& configInfo, uint32_t width, uint32_t height);
 
 	private:

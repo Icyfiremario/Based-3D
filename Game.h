@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <vector>
+#include <array>
 #include <stdexcept>
 
 class Game
