@@ -9,6 +9,13 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <array>
+#include <cstdlib>
+#include <cstring>
+#include <iostream>
+#include <limits>
+#include <set>
+#include <stdexcept>
 
 //Swap chain for Based 3D
 class B3DSwapChain
