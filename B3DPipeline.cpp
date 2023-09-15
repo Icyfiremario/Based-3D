@@ -24,7 +24,6 @@ void B3DPipeline::bind(VkCommandBuffer commandBuffer)
 
 void B3DPipeline::deafultPipelineConfigInfo(PipelineConfigInfo& configInfo, uint32_t width, uint32_t height)
 {
-	//PipelineConfigInfo configInfo{};
 
 	configInfo.inputAssemblyInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
 	configInfo.inputAssemblyInfo.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
@@ -39,13 +38,6 @@ void B3DPipeline::deafultPipelineConfigInfo(PipelineConfigInfo& configInfo, uint
 
 	configInfo.scissor.offset = {0, 0};
 	configInfo.scissor.extent = { width, height };
-
-	//VkPipelineViewportStateCreateInfo viewportInfo{};
-	//viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
-	//viewportInfo.viewportCount = 1;
-	//viewportInfo.pViewports = &configInfo.viewport;
-	//viewportInfo.scissorCount = 1;
-	//viewportInfo.pScissors = &configInfo.scissor;
 
 	configInfo.rasterizationInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
 	configInfo.rasterizationInfo.depthClampEnable = VK_FALSE;
@@ -145,12 +137,15 @@ void B3DPipeline::createGraphicsPipeline(const std::string& vertFilePath, const 
 	shaderStages[1].pNext = nullptr;
 	shaderStages[1].pSpecializationInfo = nullptr;
 
+	auto bindingDescriptions = B3DModel::Vertex::getBindingDecriptions();
+	auto attributeDescriptions = B3DModel::Vertex::getAttributeDecriptions();
+
 	VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
 	vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-	vertexInputInfo.vertexAttributeDescriptionCount = 0;
-	vertexInputInfo.vertexBindingDescriptionCount = 0;
-	vertexInputInfo.pVertexAttributeDescriptions = nullptr;
-	vertexInputInfo.pVertexBindingDescriptions = nullptr;
+	vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
+	vertexInputInfo.vertexBindingDescriptionCount = static_cast<uint32_t>(bindingDescriptions.size());
+	vertexInputInfo.pVertexAttributeDescriptions = attributeDescriptions.data();
+	vertexInputInfo.pVertexBindingDescriptions = bindingDescriptions.data();
 
 	VkPipelineViewportStateCreateInfo viewportInfo{};
 	viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
@@ -166,7 +161,6 @@ void B3DPipeline::createGraphicsPipeline(const std::string& vertFilePath, const 
 	pipelineInfo.pVertexInputState = &vertexInputInfo;
 	pipelineInfo.pInputAssemblyState = &configInfo.inputAssemblyInfo;
 	pipelineInfo.pViewportState = &viewportInfo;
-	//pipelineInfo.pViewportState = &configInfo.viewportInfo;
 	pipelineInfo.pRasterizationState = &configInfo.rasterizationInfo;
 	pipelineInfo.pMultisampleState = &configInfo.multisampleInfo;
 	pipelineInfo.pColorBlendState = &configInfo.colorBlendInfo;

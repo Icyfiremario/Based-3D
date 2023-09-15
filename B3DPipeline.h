@@ -2,7 +2,9 @@
 
 #include <string>
 #include <vector>
+
 #include "B3DDevice.h"
+#include "B3DModel.h"
 
 struct PipelineConfigInfo
 {

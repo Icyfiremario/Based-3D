@@ -5,9 +5,11 @@
 
 Game::Game()
 {
+	loadModels();
 	createPipelineLayout();
 	createPipeline();
 	createCommandBuffers();
+	
 }
 
 Game::~Game()
@@ -97,7 +99,8 @@ void Game::createCommandBuffers()
 
 		gameRenderPipeline->bind(commandBuffers[i]);
 
-		vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
+		gameModel->bind(commandBuffers[i]);
+		gameModel->draw(commandBuffers[i]);
 
 		vkCmdEndRenderPass(commandBuffers[i]);
 
@@ -124,5 +127,34 @@ void Game::drawFrame()
 	if (result != VK_SUCCESS)
 	{
 		throw std::runtime_error("Failed to present swap chain image!");
+	}
+}
+
+void Game::loadModels()
+{
+	std::vector<B3DModel::Vertex> vertices{};
+
+	serpinski(vertices, 5, { -0.5f, 0.5f }, { 0.5f, 0.5f }, { 0.0f, -0.5f });
+
+	gameModel = std::make_unique<B3DModel>(gameDevice, vertices);
+}
+
+void Game::serpinski(std::vector<B3DModel::Vertex>& vertices, int depth, glm::vec2 left, glm::vec2 right, glm::vec2 top)
+{
+	if (depth <= 0)
+	{
+		vertices.push_back({ top });
+		vertices.push_back({ right });
+		vertices.push_back({ left });
+	}
+	else
+	{
+		auto leftTop = 0.5f * (left + top);
+		auto rightTop = 0.5f * (right + top);
+		auto leftRight = 0.5f * (left + right);
+
+		serpinski(vertices, depth - 1, left, leftRight, leftTop);
+		serpinski(vertices, depth - 1, leftRight, right, rightTop);
+		serpinski(vertices, depth - 1, leftTop, rightTop, top);
 	}
 }

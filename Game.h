@@ -4,6 +4,7 @@
 #include "B3DPipeline.h"
 #include "B3DDevice.h"
 #include "B3DSwapChain.h"
+#include "B3DModel.h"
 
 #include <memory>
 #include <vector>
@@ -35,8 +36,13 @@ class Game
 		VkPipelineLayout pipelineLayout;
 		std::vector<VkCommandBuffer> commandBuffers;
 
+		std::unique_ptr<B3DModel> gameModel;
+
 		void createPipelineLayout();
 		void createPipeline();
 		void createCommandBuffers();
 		void drawFrame();
+		void loadModels();
+
+		void serpinski(std::vector<B3DModel::Vertex>& vertices, int depth, glm::vec2 left, glm::vec2 right, glm::vec2 top);
 };

@@ -169,6 +169,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="B3DDevice.cpp" />
+    <ClCompile Include="B3DModel.cpp" />
     <ClCompile Include="B3DPipeline.cpp" />
     <ClCompile Include="B3DSwapChain.cpp" />
     <ClCompile Include="B3DWindow.cpp" />
@@ -177,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="B3DDevice.h" />
+    <ClInclude Include="B3DModel.h" />
     <ClInclude Include="B3DPipeline.h" />
     <ClInclude Include="B3DSwapChain.h" />
     <ClInclude Include="B3DWindow.h" />
