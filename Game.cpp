@@ -121,8 +121,6 @@ void Game::loadModels()
 		{{ 0.0f, -0.5f }, {0.03, 0.49, 0.22}}
 	};
 
-	//serpinski(vertices, 5, { -0.5f, 0.5f }, { 0.5f, 0.5f }, { 0.0f, -0.5f });
-
 	gameModel = std::make_unique<B3DModel>(gameDevice, vertices);
 }
 
@@ -208,24 +206,4 @@ void Game::recordCommandBuffer(int imageIndex)
 		throw std::runtime_error("Failed to end command buffer recording!");
 	}
 
-}
-
-void Game::serpinski(std::vector<B3DModel::Vertex>& vertices, int depth, glm::vec2 left, glm::vec2 right, glm::vec2 top)
-{
-	if (depth <= 0)
-	{
-		vertices.push_back({ top });
-		vertices.push_back({ right });
-		vertices.push_back({ left });
-	}
-	else
-	{
-		auto leftTop = 0.5f * (left + top);
-		auto rightTop = 0.5f * (right + top);
-		auto leftRight = 0.5f * (left + right);
-
-		serpinski(vertices, depth - 1, left, leftRight, leftTop);
-		serpinski(vertices, depth - 1, leftRight, right, rightTop);
-		serpinski(vertices, depth - 1, leftTop, rightTop, top);
-	}
 }

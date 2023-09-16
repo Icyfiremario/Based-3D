@@ -48,6 +48,4 @@ class Game
 		void loadModels();
 		void recreateSwapChain();
 		void recordCommandBuffer(int imageIndex);
-
-		void serpinski(std::vector<B3DModel::Vertex>& vertices, int depth, glm::vec2 left, glm::vec2 right, glm::vec2 top);
 };
