@@ -6,10 +6,15 @@
 #include "B3DSwapChain.h"
 #include "B3DModel.h"
 
+#define GLM_FORCE_RADIANS
+#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+#include <glm/glm.hpp>
+
 #include <memory>
 #include <vector>
 #include <array>
 #include <stdexcept>
+
 
 class Game
 {

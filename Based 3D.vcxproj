@@ -83,6 +83,7 @@
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\lib-vc2022;C:\VulkanSDK\1.3.250.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -102,12 +103,14 @@
     </CustomBuildStep>
     <CustomBuildStep>
       <RootFolder>.\x64\$(Configuration)</RootFolder>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\lib-vc2022;C:\VulkanSDK\1.3.250.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -125,12 +128,14 @@
     </CustomBuildStep>
     <CustomBuildStep>
       <RootFolder>.\x64\$(Configuration)</RootFolder>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\lib-vc2022;C:\VulkanSDK\1.3.250.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -146,12 +151,14 @@
       <Outputs>simple_shader.frag.spv;simple_shader.vert.spv;%(Outputs)</Outputs>
       <Command>.\ShaderCompile.bat</Command>
       <RootFolder>.\x64\$(Configuration)</RootFolder>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\lib-vc2022;C:\VulkanSDK\1.3.250.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -165,10 +172,12 @@
       <Outputs>simple_shader.frag.spv;simple_shader.vert.spv;%(Outputs)</Outputs>
       <Command>.\ShaderCompile.bat</Command>
       <RootFolder>.\x64\$(Configuration)</RootFolder>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="B3DDevice.cpp" />
+    <ClCompile Include="B3DGameObj.cpp" />
     <ClCompile Include="B3DModel.cpp" />
     <ClCompile Include="B3DPipeline.cpp" />
     <ClCompile Include="B3DSwapChain.cpp" />
@@ -178,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="B3DDevice.h" />
+    <ClInclude Include="B3DGameObj.h" />
     <ClInclude Include="B3DModel.h" />
     <ClInclude Include="B3DPipeline.h" />
     <ClInclude Include="B3DSwapChain.h" />

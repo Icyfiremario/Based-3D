@@ -99,7 +99,7 @@ std::vector<char> B3DPipeline::readFile(const std::string& filePath)
 
 	if (!file.is_open())
 	{
-		throw std::runtime_error("failed to open file: " + filePath);
+		throw std::runtime_error("Failed to open file: " + filePath);
 	}
 
 	size_t fileSize = static_cast<size_t>(file.tellg());
@@ -114,8 +114,8 @@ std::vector<char> B3DPipeline::readFile(const std::string& filePath)
 
 void B3DPipeline::createGraphicsPipeline(const std::string& vertFilePath, const std::string& fragFilePath, const PipelineConfigInfo& configInfo)
 {
-	assert(configInfo.pipelineLayout != VK_NULL_HANDLE && "Connot create graphics pipeline! No piplineLayout provided in config");
-	assert(configInfo.renderPass != VK_NULL_HANDLE && "Connot create graphics pipeline! No renderPass provided in config");
+	assert(configInfo.pipelineLayout != VK_NULL_HANDLE && "Cannot create graphics pipeline! No piplineLayout provided in config");
+	assert(configInfo.renderPass != VK_NULL_HANDLE && "Cannot create graphics pipeline! No renderPass provided in config");
 
 	auto vertCode = readFile(vertFilePath);
 	auto fragCode = readFile(fragFilePath);

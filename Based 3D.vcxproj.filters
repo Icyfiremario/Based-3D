@@ -43,6 +43,9 @@
     <ClCompile Include="B3DModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="B3DGameObj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="B3DWindow.h">
@@ -64,6 +67,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="B3DModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="B3DGameObj.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

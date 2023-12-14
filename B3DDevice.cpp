@@ -128,7 +128,7 @@ void B3DDevice::pickPhysicalDevice()
 
 	if (deviceCount == 0)
 	{
-		throw std::runtime_error("failed to find Vulkan compatable GPUs! Check your GPU manufactures website to get the latest drivers.");
+		throw std::runtime_error("Failed to find Vulkan compatable GPUs! Check your GPU manufactures website to get the latest drivers.");
 	}
 
 	std::cout << "Device count: " << deviceCount << std::endl;
@@ -146,11 +146,11 @@ void B3DDevice::pickPhysicalDevice()
 
 	if (physicalDevice == VK_NULL_HANDLE)
 	{
-		throw std::runtime_error("failed to find a suitable GPU!");
+		throw std::runtime_error("Failed to find a suitable GPU!");
 	}
 
 	vkGetPhysicalDeviceProperties(physicalDevice, &properties);
-	std::cout << "physical device: " << properties.deviceName << std::endl;
+	std::cout << "Physical device: " << properties.deviceName << std::endl;
 }
 
 void B3DDevice::createlogicalDevice()
@@ -196,7 +196,7 @@ void B3DDevice::createlogicalDevice()
 
 	if (vkCreateDevice(physicalDevice, &createInfo, nullptr, &device_) != VK_SUCCESS)
 	{
-		throw std::runtime_error("failed to create logical device!");
+		throw std::runtime_error("Failed to create logical device!");
 	}
 
 	vkGetDeviceQueue(device_, indices.graphicsFamily, 0, &graphicsQueue_);
@@ -214,7 +214,7 @@ void B3DDevice::createCommandPool()
 
 	if (vkCreateCommandPool(device_, &poolInfo, nullptr, &commandPool) != VK_SUCCESS)
 	{
-		throw std::runtime_error("failed to create command pool!");
+		throw std::runtime_error("Failed to create command pool!");
 	}
 }
 
@@ -341,7 +341,7 @@ void B3DDevice::hasGlfwRequiredInstanceExtensions()
 	std::vector<VkExtensionProperties> extensions(extentionCount);
 	vkEnumerateInstanceExtensionProperties(nullptr, &extentionCount, extensions.data());
 
-	std::cout << "available extensions:" << std::endl;
+	std::cout << "Available extensions:" << std::endl;
 	std::unordered_set<std::string> available;
 	for (const auto& extension : extensions)
 	{
@@ -349,7 +349,7 @@ void B3DDevice::hasGlfwRequiredInstanceExtensions()
 		available.insert(extension.extensionName);
 	}
 
-	std::cout << "required extensions:" << std::endl;
+	std::cout << "Required extensions:" << std::endl;
 	auto requiredExtensions = getRequiredExtensions();
 	for (const auto& required : requiredExtensions)
 	{
@@ -418,7 +418,7 @@ uint32_t B3DDevice::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags pr
 		}
 	}
 
-	throw std::runtime_error("failed to find suitable memory type!");
+	throw std::runtime_error("Failed to find suitable memory type!");
 }
 
 VkFormat B3DDevice::findSupportedFormat(const std::vector<VkFormat>& canidates, VkImageTiling tiling, VkFormatFeatureFlags features)
@@ -438,7 +438,7 @@ VkFormat B3DDevice::findSupportedFormat(const std::vector<VkFormat>& canidates, 
 		}
 	}
 
-	throw std::runtime_error("failed to find supported format!");
+	throw std::runtime_error("Failed to find supported format!");
 }
 
 void B3DDevice::createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory)
@@ -451,7 +451,7 @@ void B3DDevice::createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemo
 
 	if (vkCreateBuffer(device_, &bufferInfo, nullptr, &buffer) != VK_SUCCESS)
 	{
-		throw std::runtime_error("failed to create vertex buffer!");
+		throw std::runtime_error("Failed to create vertex buffer!");
 	}
 
 	VkMemoryRequirements memRequirements;
@@ -464,7 +464,7 @@ void B3DDevice::createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemo
 
 	if (vkAllocateMemory(device_, &allocInfo, nullptr, &bufferMemory) != VK_SUCCESS)
 	{
-		throw std::runtime_error("failed to allocate vertex buffer memory!");
+		throw std::runtime_error("Failed to allocate vertex buffer memory!");
 	}
 
 	vkBindBufferMemory(device_, buffer, bufferMemory, 0);
