@@ -168,6 +168,7 @@
     <ClCompile Include="B3DGameObj.cpp" />
     <ClCompile Include="B3DModel.cpp" />
     <ClCompile Include="B3DPipeline.cpp" />
+    <ClCompile Include="B3DRenderer.cpp" />
     <ClCompile Include="B3DSwapChain.cpp" />
     <ClCompile Include="B3DWindow.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="B3DGameObj.h" />
     <ClInclude Include="B3DModel.h" />
     <ClInclude Include="B3DPipeline.h" />
+    <ClInclude Include="B3DRenderer.h" />
     <ClInclude Include="B3DSwapChain.h" />
     <ClInclude Include="B3DWindow.h" />
     <ClInclude Include="Game.h" />

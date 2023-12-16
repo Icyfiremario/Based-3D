@@ -6,6 +6,7 @@
 #include "B3DDevice.h"
 #include "B3DSwapChain.h"
 #include "B3DGameObj.h"
+#include "B3DRenderer.h"
 
 //GLM
 #define GLM_FORCE_RADIANS
@@ -37,25 +38,19 @@ class Game
 
 	private:
 
+		unsigned frameCnt = 0;
+
 		B3DWindow gameWindow{ WIDTH, HEIGHT, "Based Engine 3D" };
 		B3DDevice gameDevice{ gameWindow };
-
-
-		std::unique_ptr<B3DSwapChain> gameSwapChain;
+		B3DRenderer gameRenderer{ gameWindow, gameDevice };
 
 		std::unique_ptr<B3DPipeline> gameRenderPipeline;
 		VkPipelineLayout pipelineLayout;
-		std::vector<VkCommandBuffer> commandBuffers;
 
 		std::vector<B3DGameObj> gameObjects;
 
 		void createPipelineLayout();
 		void createPipeline();
-		void createCommandBuffers();
-		void freeCommandBuffers();
-		void drawFrame();
 		void loadGameObjects();
-		void recreateSwapChain();
-		void recordCommandBuffer(int imageIndex);
 		void renderGameObjects(VkCommandBuffer commandBuffer);
 };
