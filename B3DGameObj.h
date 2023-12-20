@@ -6,20 +6,20 @@
 //std
 #include <memory>
 
-struct Transform2dComponent
+//GLM
+#include <glm/gtc/matrix_transform.hpp>
+
+struct TransformComponent
 {
-	glm::vec2 translation{};
-	glm::vec2 scale{1.f, 1.f};
-	float rotation;
+	glm::vec3 translation{};
+	glm::vec3 scale{1.f, 1.f, 1.f};
+	glm::vec3 rotation{};
 
-	glm::mat2 mat2()
+	glm::mat4 mat()
 	{
-		const float s = glm::sin(rotation);
-		const float c = glm::cos(rotation);
-		glm::mat2 rotMatrix{ {c, s}, {-s, c} };
-
-		glm::mat2 scaleMat{ {scale.x, .0f}, {.0f, scale.y} };
-		return rotMatrix * scaleMat;
+		auto transform = glm::translate(glm::mat4{ 1.f }, translation);
+		transform = glm::scale(transform, scale);
+		return transform;
 	}
 };
 
@@ -31,7 +31,7 @@ class B3DGameObj
 
 		std::shared_ptr<B3DModel> model{};
 		glm::vec3 color{};
-		Transform2dComponent transform2d;
+		TransformComponent transform2d;
 
 		static B3DGameObj createGameObject()
 		{
