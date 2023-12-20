@@ -56,7 +56,7 @@ std::vector<VkVertexInputAttributeDescription> B3DModel::Vertex::getAttributeDec
 
 	attributeDescritptions[0].binding = 0;
 	attributeDescritptions[0].location = 0;
-	attributeDescritptions[0].format = VK_FORMAT_R32G32_SFLOAT;
+	attributeDescritptions[0].format = VK_FORMAT_R32G32B32_SFLOAT;
 	attributeDescritptions[0].offset = offsetof(Vertex, position);
 
 	attributeDescritptions[1].binding = 0;

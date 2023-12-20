@@ -31,21 +31,72 @@ void Game::run()
 	vkDeviceWaitIdle(gameDevice.device());
 }
 
+std::unique_ptr<B3DModel> createCubeModel(B3DDevice& device, glm::vec3 offset) {
+    std::vector<B3DModel::Vertex> vertices{
+
+        // left face (white)
+        {{-.5f, -.5f, -.5f}, {.9f, .9f, .9f}},
+        {{-.5f, .5f, .5f}, {.9f, .9f, .9f}},
+        {{-.5f, -.5f, .5f}, {.9f, .9f, .9f}},
+        {{-.5f, -.5f, -.5f}, {.9f, .9f, .9f}},
+        {{-.5f, .5f, -.5f}, {.9f, .9f, .9f}},
+        {{-.5f, .5f, .5f}, {.9f, .9f, .9f}},
+
+        // right face (yellow)
+        {{.5f, -.5f, -.5f}, {.8f, .8f, .1f}},
+        {{.5f, .5f, .5f}, {.8f, .8f, .1f}},
+        {{.5f, -.5f, .5f}, {.8f, .8f, .1f}},
+        {{.5f, -.5f, -.5f}, {.8f, .8f, .1f}},
+        {{.5f, .5f, -.5f}, {.8f, .8f, .1f}},
+        {{.5f, .5f, .5f}, {.8f, .8f, .1f}},
+
+        // top face (orange, remember y axis points down)
+        {{-.5f, -.5f, -.5f}, {.9f, .6f, .1f}},
+        {{.5f, -.5f, .5f}, {.9f, .6f, .1f}},
+        {{-.5f, -.5f, .5f}, {.9f, .6f, .1f}},
+        {{-.5f, -.5f, -.5f}, {.9f, .6f, .1f}},
+        {{.5f, -.5f, -.5f}, {.9f, .6f, .1f}},
+        {{.5f, -.5f, .5f}, {.9f, .6f, .1f}},
+
+        // bottom face (red)
+        {{-.5f, .5f, -.5f}, {.8f, .1f, .1f}},
+        {{.5f, .5f, .5f}, {.8f, .1f, .1f}},
+        {{-.5f, .5f, .5f}, {.8f, .1f, .1f}},
+        {{-.5f, .5f, -.5f}, {.8f, .1f, .1f}},
+        {{.5f, .5f, -.5f}, {.8f, .1f, .1f}},
+        {{.5f, .5f, .5f}, {.8f, .1f, .1f}},
+
+        // nose face (blue)
+        {{-.5f, -.5f, 0.5f}, {.1f, .1f, .8f}},
+        {{.5f, .5f, 0.5f}, {.1f, .1f, .8f}},
+        {{-.5f, .5f, 0.5f}, {.1f, .1f, .8f}},
+        {{-.5f, -.5f, 0.5f}, {.1f, .1f, .8f}},
+        {{.5f, -.5f, 0.5f}, {.1f, .1f, .8f}},
+        {{.5f, .5f, 0.5f}, {.1f, .1f, .8f}},
+
+        // tail face (green)
+        {{-.5f, -.5f, -0.5f}, {.1f, .8f, .1f}},
+        {{.5f, .5f, -0.5f}, {.1f, .8f, .1f}},
+        {{-.5f, .5f, -0.5f}, {.1f, .8f, .1f}},
+        {{-.5f, -.5f, -0.5f}, {.1f, .8f, .1f}},
+        {{.5f, -.5f, -0.5f}, {.1f, .8f, .1f}},
+        {{.5f, .5f, -0.5f}, {.1f, .8f, .1f}},
+
+    };
+    for (auto& v : vertices) {
+        v.position += offset;
+    }
+    return std::make_unique<B3DModel>(device, vertices);
+}
+
 void Game::loadGameObjects()
 {
-	std::vector<B3DModel::Vertex> vertices{
-		{{ -0.5f, 0.5f }, {0.03, 0.49, 0.22} },
-		{{ 0.5f, 0.5f }, {0.03, 0.49, 0.22}},
-		{{ 0.0f, -0.5f }, {0.03, 0.49, 0.22}}
-	};
+    std::shared_ptr<B3DModel> cubeModel = createCubeModel(gameDevice, {.0f, .0f, .0f});
 
-	auto gameModel = std::make_shared<B3DModel>(gameDevice, vertices);
-	auto triangle = B3DGameObj::createGameObject();
-	triangle.model = gameModel;
-	triangle.color = {.1f, .8f, .1f};
-	triangle.transform2d.translation.x = .2f;
-	triangle.transform2d.scale = { 2.f, .5f };
-	triangle.transform2d.rotation = .25f * glm::two_pi<float>();
+    auto cube = B3DGameObj::createGameObject();
+    cube.model = cubeModel;
+    cube.transform.translation = {.0f, .0f, .5f};
+    cube.transform.scale = { .5f, .5f, .5f };
 
-	gameObjects.push_back(std::move(triangle));
+    gameObjects.push_back(std::move(cube));
 }
