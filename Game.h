@@ -7,6 +7,7 @@
 #include "B3DGameObj.h"
 #include "B3DRenderer.h"
 #include "SimpleRenderSystem.h"
+#include "B3DCamera.h"
 
 //GLM
 #define GLM_FORCE_RADIANS

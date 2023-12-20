@@ -16,7 +16,7 @@ SimpleRenderSystem::~SimpleRenderSystem()
 {
 }
 
-void SimpleRenderSystem::renderGameObjects(VkCommandBuffer commandBuffer, std::vector<B3DGameObj>& gameObjects)
+void SimpleRenderSystem::renderGameObjects(VkCommandBuffer commandBuffer, std::vector<B3DGameObj>& gameObjects, const B3DCamera& camera)
 {
 	rSysPipeline->bind(commandBuffer);
 
@@ -27,7 +27,7 @@ void SimpleRenderSystem::renderGameObjects(VkCommandBuffer commandBuffer, std::v
 
 		SimplePushConstantData push{};
 		push.color = obj.color;
-		push.transform = obj.transform.mat4();
+		push.transform = camera.getProjection() * obj.transform.mat4();
 
 		vkCmdPushConstants(commandBuffer, rSysPipelineLayout, VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT, 0, sizeof(SimplePushConstantData), &push);
 		obj.model->bind(commandBuffer);

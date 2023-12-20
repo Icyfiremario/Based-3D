@@ -164,6 +164,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="B3DCamera.cpp" />
     <ClCompile Include="B3DDevice.cpp" />
     <ClCompile Include="B3DGameObj.cpp" />
     <ClCompile Include="B3DModel.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="SimpleRenderSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="B3DCamera.h" />
     <ClInclude Include="B3DDevice.h" />
     <ClInclude Include="B3DGameObj.h" />
     <ClInclude Include="B3DModel.h" />

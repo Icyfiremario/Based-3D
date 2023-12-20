@@ -35,6 +35,7 @@ class B3DRenderer
 		}
 
 		VkRenderPass getSwapChainRenderPass() const { return rendererSwapChain->getRenderPass(); }
+		float getAspectRatio() const { return rendererSwapChain->extentAspectRatio(); }
 
 		VkCommandBuffer getCurrentCommandBuffer() const
 		{

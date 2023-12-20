@@ -13,16 +13,21 @@ Game::~Game()
 void Game::run()
 {
 	SimpleRenderSystem simpleRenderSystem{ gameDevice, gameRenderer.getSwapChainRenderPass() };
+    B3DCamera camera{};
 
 	while (!gameWindow.shouldClose())
 	{
 		frameCnt++;
 		glfwPollEvents();
+
+        float aspect = gameRenderer.getAspectRatio();
+        //camera.setOrthoGraphicProjection(-aspect, aspect, -1, 1, -1, 1);
+        camera.setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 10.f);
 		
 		if (auto commandBuffer = gameRenderer.beginFrame())
 		{
 			gameRenderer.beginSwapChainRenderPass(commandBuffer);
-			simpleRenderSystem.renderGameObjects(commandBuffer, gameObjects);
+			simpleRenderSystem.renderGameObjects(commandBuffer, gameObjects, camera);
 			gameRenderer.endSwapChainRenderPass(commandBuffer);
 			gameRenderer.endFrame();
 		}
@@ -95,7 +100,7 @@ void Game::loadGameObjects()
 
     auto cube = B3DGameObj::createGameObject();
     cube.model = cubeModel;
-    cube.transform.translation = {.0f, .0f, .5f};
+    cube.transform.translation = {.0f, .0f, 2.5f};
     cube.transform.scale = { .5f, .5f, .5f };
 
     gameObjects.push_back(std::move(cube));
