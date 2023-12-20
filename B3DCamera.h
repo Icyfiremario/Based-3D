@@ -17,8 +17,10 @@ class B3DCamera
 		void setPerspectiveProjection(float fovy, float aspect, float near, float far);
 
 		const glm::mat4& getProjection() const { return projectionMatrix; }
+		const glm::mat4& getView() const { return viewMatrix; }
 
 	private:
 
 		glm::mat4 projectionMatrix{1.f};
+		glm::mat4 viewMatrix{ 1.f };
 };
