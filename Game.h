@@ -2,11 +2,11 @@
 
 //Local
 #include "B3DWindow.h"
-#include "B3DPipeline.h"
 #include "B3DDevice.h"
 #include "B3DSwapChain.h"
 #include "B3DGameObj.h"
 #include "B3DRenderer.h"
+#include "SimpleRenderSystem.h"
 
 //GLM
 #define GLM_FORCE_RADIANS
@@ -44,13 +44,7 @@ class Game
 		B3DDevice gameDevice{ gameWindow };
 		B3DRenderer gameRenderer{ gameWindow, gameDevice };
 
-		std::unique_ptr<B3DPipeline> gameRenderPipeline;
-		VkPipelineLayout pipelineLayout;
-
 		std::vector<B3DGameObj> gameObjects;
 
-		void createPipelineLayout();
-		void createPipeline();
 		void loadGameObjects();
-		void renderGameObjects(VkCommandBuffer commandBuffer);
 };

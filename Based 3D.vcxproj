@@ -173,6 +173,7 @@
     <ClCompile Include="B3DWindow.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SimpleRenderSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="B3DDevice.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="B3DWindow.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SimpleRenderSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

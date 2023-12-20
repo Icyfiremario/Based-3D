@@ -70,6 +70,7 @@ void B3DRenderer::endFrame()
 	}
 
 	isFrameStarted = false;
+	currentFrameIndex = (currentFrameIndex + 1) % B3DSwapChain::MAX_FRAMES_IN_FLIGHT;
 }
 
 void B3DRenderer::beginSwapChainRenderPass(VkCommandBuffer commandBuffer)
@@ -118,7 +119,7 @@ void B3DRenderer::endSwapChainRenderPass(VkCommandBuffer commandBuffer)
 
 void B3DRenderer::createCommandBuffers()
 {
-	commandBuffers.resize(rendererSwapChain->imageCount());
+	commandBuffers.resize(B3DSwapChain::MAX_FRAMES_IN_FLIGHT);
 
 	VkCommandBufferAllocateInfo allocInfo{};
 	allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
@@ -130,8 +131,6 @@ void B3DRenderer::createCommandBuffers()
 	{
 		throw std::runtime_error("Failed to allocate command buffers!");
 	}
-
-
 }
 
 void B3DRenderer::freeCommandBuffers()
@@ -159,12 +158,12 @@ void B3DRenderer::recreateSwapChain()
 	}
 	else
 	{
-		rendererSwapChain = std::make_unique<B3DSwapChain>(rendererDevice, extent, std::move(rendererSwapChain));
+		std::shared_ptr<B3DSwapChain> oldSwapChain = std::move(rendererSwapChain);
+		rendererSwapChain = std::make_unique<B3DSwapChain>(rendererDevice, extent, oldSwapChain);
 
-		if (rendererSwapChain->imageCount() != commandBuffers.size())
+		if (!oldSwapChain->compareSwapFormats(*rendererSwapChain.get()))
 		{
-			freeCommandBuffers();
-			createCommandBuffers();
+			throw std::runtime_error("Swap chain image or depth format has changed!");
 		}
 	}
 }

@@ -28,12 +28,18 @@ class B3DRenderer
 
 		bool isFrameInProgress() const { return isFrameStarted; }
 
+		int getFrameIndex() const
+		{
+			assert(isFrameStarted && "Cannot get frame index when frame not in progress");
+			return currentFrameIndex;
+		}
+
 		VkRenderPass getSwapChainRenderPass() const { return rendererSwapChain->getRenderPass(); }
 
 		VkCommandBuffer getCurrentCommandBuffer() const
 		{
 			assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
-			return commandBuffers[currentImageIndex];
+			return commandBuffers[currentFrameIndex];
 		}
 
 	private:
@@ -44,6 +50,7 @@ class B3DRenderer
 		std::vector<VkCommandBuffer> commandBuffers;
 
 		uint32_t currentImageIndex;
+		int currentFrameIndex = 0;
 		bool isFrameStarted = false;
 
 		void createCommandBuffers();
