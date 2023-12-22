@@ -86,6 +86,13 @@
     <CustomBuildStep />
     <PreBuildEvent />
     <PreBuildEvent />
+    <PreBuildEvent>
+      <Command>./ShaderCompile.bat
+</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Compiling shaders</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -104,6 +111,13 @@
     <CustomBuildStep />
     <PreBuildEvent />
     <PreBuildEvent />
+    <PreBuildEvent>
+      <Command>./ShaderCompile.bat
+</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Compiling shaders</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -122,6 +136,13 @@
     <CustomBuildStep />
     <PreBuildEvent />
     <PreBuildEvent />
+    <PreBuildEvent>
+      <Command>./ShaderCompile.bat
+</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Compiling shaders</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -138,6 +159,13 @@
     <CustomBuildStep />
     <PreBuildEvent />
     <PreBuildEvent />
+    <PreBuildEvent>
+      <Command>./ShaderCompile.bat
+</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Compiling shaders</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="B3DCamera.cpp" />
