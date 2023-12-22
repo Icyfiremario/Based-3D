@@ -109,6 +109,9 @@
     <ClInclude Include="B3DBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="B3DFrameInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="simple_shader.vert">

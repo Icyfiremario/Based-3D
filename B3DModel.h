@@ -3,6 +3,7 @@
 //Local
 #include "B3DDevice.h"
 #include "B3DUtils.h"
+#include "B3DBuffer.h"
 
 //GLM
 #define GLM_FORCE_RADIANS
@@ -59,14 +60,11 @@ class B3DModel
 
 		B3DDevice& modelDevice;
 
-		VkBuffer vertexBuffer;
-		VkDeviceMemory vertexBufferMemory;
+		std::unique_ptr<B3DBuffer> vertexBuffer;
 		uint32_t vertexCount;
 
-		VkBuffer indexBuffer;
-		VkDeviceMemory indexBufferMemory;
+		std::unique_ptr<B3DBuffer> indexBuffer;
 		uint32_t indexCount;
-
 		bool hasIndexBuffer = false;
 
 		void createVertexBuffers(const std::vector<Vertex>& verticies);

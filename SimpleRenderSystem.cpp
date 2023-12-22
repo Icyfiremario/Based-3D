@@ -16,11 +16,11 @@ SimpleRenderSystem::~SimpleRenderSystem()
 {
 }
 
-void SimpleRenderSystem::renderGameObjects(VkCommandBuffer commandBuffer, std::vector<B3DGameObj>& gameObjects, const B3DCamera& camera)
+void SimpleRenderSystem::renderGameObjects(FrameInfo &frameInfo, std::vector<B3DGameObj>& gameObjects)
 {
-	rSysPipeline->bind(commandBuffer);
+	rSysPipeline->bind(frameInfo.commandBuffer);
 
-	auto projectionView = camera.getProjection() * camera.getView();
+	auto projectionView = frameInfo.camera.getProjection() * frameInfo.camera.getView();
 
 	for (auto& obj : gameObjects)
 	{
@@ -29,9 +29,9 @@ void SimpleRenderSystem::renderGameObjects(VkCommandBuffer commandBuffer, std::v
 		push.transform = projectionView * modelMatrix;
 		push.normalMatrix = obj.transform.normalMatrix();
 
-		vkCmdPushConstants(commandBuffer, rSysPipelineLayout, VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT, 0, sizeof(SimplePushConstantData), &push);
-		obj.model->bind(commandBuffer);
-		obj.model->draw(commandBuffer);
+		vkCmdPushConstants(frameInfo.commandBuffer, rSysPipelineLayout, VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT, 0, sizeof(SimplePushConstantData), &push);
+		obj.model->bind(frameInfo.commandBuffer);
+		obj.model->draw(frameInfo.commandBuffer);
 	}
 }
 

@@ -16,6 +16,7 @@
 #include "B3DGameObj.h"
 #include "B3DPipeline.h"
 #include "B3DCamera.h"
+#include "B3DFrameInfo.h"
 
 class SimpleRenderSystem
 {
@@ -26,7 +27,7 @@ class SimpleRenderSystem
 		SimpleRenderSystem(const SimpleRenderSystem&) = delete;
 		SimpleRenderSystem& operator=(const SimpleRenderSystem&) = delete;
 
-		void renderGameObjects(VkCommandBuffer commandBuffer, std::vector<B3DGameObj>& gameObjects, const B3DCamera& camera);
+		void renderGameObjects( FrameInfo &frameInfo, std::vector<B3DGameObj>& gameObjects);
 
 	private:
 

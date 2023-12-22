@@ -77,7 +77,7 @@ void B3DBuffer::writeToIndex(void* data, int index)
 	writeToBuffer(data, instanceSize, index * alignmentSize);
 }
 
-VkResult B3DBuffer::flushIndex(void* data, int index)
+VkResult B3DBuffer::flushIndex(int index)
 {
 	return flush(alignmentSize, index * alignmentSize);
 }

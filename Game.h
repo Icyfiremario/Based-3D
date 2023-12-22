@@ -9,6 +9,7 @@
 #include "SimpleRenderSystem.h"
 #include "B3DCamera.h"
 #include "keyboardMovementController.h"
+#include "B3DBuffer.h"
 
 //GLM
 #define GLM_FORCE_RADIANS

@@ -186,6 +186,7 @@
     <ClInclude Include="B3DBuffer.h" />
     <ClInclude Include="B3DCamera.h" />
     <ClInclude Include="B3DDevice.h" />
+    <ClInclude Include="B3DFrameInfo.h" />
     <ClInclude Include="B3DGameObj.h" />
     <ClInclude Include="B3DModel.h" />
     <ClInclude Include="B3DPipeline.h" />
