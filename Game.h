@@ -10,6 +10,7 @@
 #include "B3DCamera.h"
 #include "keyboardMovementController.h"
 #include "B3DBuffer.h"
+#include "B3DDescriptors.h"
 
 //GLM
 #define GLM_FORCE_RADIANS
@@ -49,6 +50,7 @@ class Game
 		B3DDevice gameDevice{ gameWindow };
 		B3DRenderer gameRenderer{ gameWindow, gameDevice };
 
+		std::unique_ptr<B3DDescriptorPool> globalPool{};
 		std::vector<B3DGameObj> gameObjects;
 
 		void loadGameObjects();

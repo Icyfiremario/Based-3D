@@ -9,6 +9,7 @@ struct GlobalUbo
 
 Game::Game()
 {
+    globalPool = B3DDescriptorPool::Builder(gameDevice).setMaxSets(B3DSwapChain::MAX_FRAMES_IN_FLIGHT).addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, B3DSwapChain::MAX_FRAMES_IN_FLIGHT).build();
 	loadGameObjects();
 }
 
@@ -26,7 +27,16 @@ void Game::run()
         ubobuffers[i]->map();
     }
 
-	SimpleRenderSystem simpleRenderSystem{ gameDevice, gameRenderer.getSwapChainRenderPass() };
+    auto globalSetLayout = B3DDescriptorSetLayout::Builder(gameDevice).addBinding(0, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_SHADER_STAGE_VERTEX_BIT).build();
+
+    std::vector<VkDescriptorSet> globalDescriptorSets(B3DSwapChain::MAX_FRAMES_IN_FLIGHT);
+    for (int i = 0; i < globalDescriptorSets.size(); i++)
+    {
+        auto bufferInfo = ubobuffers[i]->descriptorInfo();
+        B3DDescriptorWriter(*globalSetLayout, *globalPool).writeBuffer(0, &bufferInfo).build(globalDescriptorSets[i]);
+    }
+
+	SimpleRenderSystem simpleRenderSystem{ gameDevice, gameRenderer.getSwapChainRenderPass(), globalSetLayout->getDescriptorSetLayout()};
     B3DCamera camera{};
     camera.setViewTarget(glm::vec3(-1.f, -2.f, 2.f), glm::vec3(0.f, 0.f, 2.5f));
 
@@ -54,7 +64,7 @@ void Game::run()
 		if (auto commandBuffer = gameRenderer.beginFrame())
 		{
             int frameIndex = gameRenderer.getFrameIndex();
-            FrameInfo frameInfo{ frameIndex, frameTime, commandBuffer, camera };
+            FrameInfo frameInfo{ frameIndex, frameTime, commandBuffer, camera, globalDescriptorSets[frameIndex]};
 
             //Update
             GlobalUbo ubo{};

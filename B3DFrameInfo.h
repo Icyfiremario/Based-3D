@@ -13,4 +13,5 @@ struct FrameInfo
 	float frameTime;
 	VkCommandBuffer commandBuffer;
 	B3DCamera& camera;
+	VkDescriptorSet globalDescriptorSet;
 };

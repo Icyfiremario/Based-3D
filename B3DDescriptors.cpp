@@ -164,7 +164,7 @@ bool B3DDescriptorWriter::build(VkDescriptorSet& set)
     {
         return false;
     }
-
+    overwrite(set);
     return true;
 }
 

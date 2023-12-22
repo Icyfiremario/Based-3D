@@ -21,7 +21,7 @@
 class SimpleRenderSystem
 {
 	public:
-		SimpleRenderSystem(B3DDevice &device, VkRenderPass renderPass);
+		SimpleRenderSystem(B3DDevice &device, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout);
 		~SimpleRenderSystem();
 
 		SimpleRenderSystem(const SimpleRenderSystem&) = delete;
@@ -36,6 +36,6 @@ class SimpleRenderSystem
 		std::unique_ptr<B3DPipeline> rSysPipeline;
 		VkPipelineLayout rSysPipelineLayout;
 
-		void createPipelineLayout();
+		void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
 		void createPipeline(VkRenderPass renderPass);
 };
