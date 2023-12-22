@@ -119,6 +119,9 @@
     <None Include=".gitignore">
       <Filter>Git Files</Filter>
     </None>
+    <None Include="sphere.obj">
+      <Filter>Assets</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Based 3D1.rc">
