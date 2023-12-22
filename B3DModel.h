@@ -1,14 +1,18 @@
 #pragma once
 
+//Local
 #include "B3DDevice.h"
 
+//GLM
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <glm/glm.hpp>
 
+//STD
 #include <vector>
 #include <cassert>
 #include <cstring>
+
 
 class B3DModel
 {

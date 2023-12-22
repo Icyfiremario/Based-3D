@@ -107,9 +107,6 @@
     <None Include="simple_shader.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="ShaderCompile.bat">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="simple_shader.frag.spv">
       <Filter>Shaders</Filter>
     </None>
@@ -119,8 +116,8 @@
     <None Include=".gitignore">
       <Filter>Git Files</Filter>
     </None>
-    <None Include="sphere.obj">
-      <Filter>Assets</Filter>
+    <None Include="ShaderCompile.bat">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

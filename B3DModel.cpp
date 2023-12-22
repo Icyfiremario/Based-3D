@@ -1,5 +1,7 @@
 #include "B3DModel.h"
 
+//Defines
+
 B3DModel::B3DModel(B3DDevice& device, const B3DModel::Builder& builder) : modelDevice{device}
 {
 	createVertexBuffers(builder.vertices);
