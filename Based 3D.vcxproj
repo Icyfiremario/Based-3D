@@ -170,6 +170,7 @@
   <ItemGroup>
     <ClCompile Include="B3DBuffer.cpp" />
     <ClCompile Include="B3DCamera.cpp" />
+    <ClCompile Include="B3DDescriptors.cpp" />
     <ClCompile Include="B3DDevice.cpp" />
     <ClCompile Include="B3DGameObj.cpp" />
     <ClCompile Include="B3DModel.cpp" />
@@ -185,6 +186,7 @@
   <ItemGroup>
     <ClInclude Include="B3DBuffer.h" />
     <ClInclude Include="B3DCamera.h" />
+    <ClInclude Include="B3DDescriptors.h" />
     <ClInclude Include="B3DDevice.h" />
     <ClInclude Include="B3DFrameInfo.h" />
     <ClInclude Include="B3DGameObj.h" />
