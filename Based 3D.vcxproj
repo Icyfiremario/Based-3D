@@ -198,6 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="cube.wobj" />
     <None Include="ShaderCompile.bat">
       <FileType>Document</FileType>
     </None>
@@ -205,6 +206,7 @@
     <None Include="simple_shader.frag.spv" />
     <None Include="simple_shader.vert" />
     <None Include="simple_shader.vert.spv" />
+    <None Include="smooth_sphere.wobj" />
     <None Include="sphere.wobj" />
   </ItemGroup>
   <ItemGroup>

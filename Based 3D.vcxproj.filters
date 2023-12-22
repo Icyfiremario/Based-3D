@@ -126,6 +126,12 @@
     <None Include="sphere.wobj">
       <Filter>Assets</Filter>
     </None>
+    <None Include="smooth_sphere.wobj">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="cube.wobj">
+      <Filter>Assets</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Based 3D1.rc">
