@@ -205,7 +205,7 @@ void B3DModel::Builder::loadModels(const std::string& filePath)
 				uniqueVertices[vertex] = static_cast<uint32_t>(vertices.size());
 				vertices.push_back(vertex);
 			}
-
+			
 			indices.push_back(uniqueVertices[vertex]);
 		}
 	}
