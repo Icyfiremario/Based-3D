@@ -20,6 +20,9 @@
     <Filter Include="Git Files">
       <UniqueIdentifier>{7f558650-1388-4e46-a1a1-cf385423bef4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{19e04229-ea15-4a8b-8e44-f57540d4670f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
