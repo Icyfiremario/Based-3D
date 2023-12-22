@@ -41,8 +41,6 @@ std::unique_ptr<B3DModel> B3DModel::createModelFromFile(B3DDevice& device, const
 	Builder builder{};
 	builder.loadModels(filePath);
 
-	std::cout << "Vertex count: " << builder.vertices.size() << std::endl;
-
 	return std::make_unique<B3DModel>(device, builder);
 }
 
