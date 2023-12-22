@@ -8,6 +8,7 @@
 #include "B3DRenderer.h"
 #include "SimpleRenderSystem.h"
 #include "B3DCamera.h"
+#include "keyboardMovementController.h"
 
 //GLM
 #define GLM_FORCE_RADIANS
@@ -20,6 +21,8 @@
 #include <vector>
 #include <array>
 #include <stdexcept>
+#include <chrono>
+#include <cmath>
 
 
 class Game
@@ -27,6 +30,7 @@ class Game
 	public:
 		static constexpr int WIDTH = 800;
 		static constexpr int HEIGHT = 600;
+		static constexpr int MAX_FRAME_TIME = 10;
 
 		Game();
 		~Game();
@@ -38,8 +42,6 @@ class Game
 
 
 	private:
-
-		unsigned frameCnt = 0;
 
 		B3DWindow gameWindow{ WIDTH, HEIGHT, "Based Engine 3D" };
 		B3DDevice gameDevice{ gameWindow };

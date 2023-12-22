@@ -173,6 +173,7 @@
     <ClCompile Include="B3DSwapChain.cpp" />
     <ClCompile Include="B3DWindow.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="keyboardMovementController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SimpleRenderSystem.cpp" />
   </ItemGroup>
@@ -186,6 +187,7 @@
     <ClInclude Include="B3DSwapChain.h" />
     <ClInclude Include="B3DWindow.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="keyboardMovementController.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SimpleRenderSystem.h" />
   </ItemGroup>

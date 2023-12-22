@@ -1,6 +1,6 @@
 #include "B3DModel.h"
 
-B3DModel::B3DModel(B3DDevice& device, const std::vector<Vertex>& verticies) : modelDevice{device}
+B3DModel::B3DModel(B3DDevice& device, const std::vector<Vertex>& verticies, const B3DModel::Builder& builder) : modelDevice{device}
 {
 	createVertexBuffers(verticies);
 }

@@ -23,7 +23,13 @@ class B3DModel
 			static std::vector<VkVertexInputAttributeDescription> getAttributeDecriptions();
 		};
 
-		B3DModel(B3DDevice& device, const std::vector<Vertex>& verticies);
+		struct Builder
+		{
+			std::vector<Vertex> vertices{};
+			std::vector<uint32_t> indices{};
+		};
+
+		B3DModel(B3DDevice& device, const std::vector<Vertex>& verticies, const B3DModel::Builder &builder);
 		~B3DModel();
 
 		B3DModel(const B3DModel&) = delete;

@@ -14,16 +14,27 @@ void Game::run()
 {
 	SimpleRenderSystem simpleRenderSystem{ gameDevice, gameRenderer.getSwapChainRenderPass() };
     B3DCamera camera{};
-    //camera.setViewDirection(glm::vec3{ 0.f }, glm::vec3(0.5f, 0.f, 1.f));
     camera.setViewTarget(glm::vec3(-1.f, -2.f, 2.f), glm::vec3(0.f, 0.f, 2.5f));
+
+    auto viewerObject = B3DGameObj::createGameObject();
+    keyboardMovementController cameraController{};
+
+    auto currentTime = std::chrono::high_resolution_clock::now();
 
 	while (!gameWindow.shouldClose())
 	{
-		frameCnt++;
 		glfwPollEvents();
 
+        auto newTime = std::chrono::high_resolution_clock::now();
+        float frameTime = std::chrono::duration<float, std::chrono::seconds::period>(newTime - currentTime).count();
+        currentTime = newTime;
+
+        frameTime = fmin(frameTime, MAX_FRAME_TIME);
+
+        cameraController.moveInPlaneXZ(gameWindow.getGLFWwindow(), frameTime, viewerObject);
+        camera.setViewYXZ(viewerObject.transform.translation, viewerObject.transform.rotation);
+
         float aspect = gameRenderer.getAspectRatio();
-        //camera.setOrthoGraphicProjection(-aspect, aspect, -1, 1, -1, 1);
         camera.setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 10.f);
 		
 		if (auto commandBuffer = gameRenderer.beginFrame())
@@ -39,7 +50,8 @@ void Game::run()
 }
 
 std::unique_ptr<B3DModel> createCubeModel(B3DDevice& device, glm::vec3 offset) {
-    std::vector<B3DModel::Vertex> vertices{
+    std::vector<B3DModel::Vertex> vertices
+    {
 
         // left face (white)
         {{-.5f, -.5f, -.5f}, {.9f, .9f, .9f}},
@@ -90,9 +102,11 @@ std::unique_ptr<B3DModel> createCubeModel(B3DDevice& device, glm::vec3 offset) {
         {{.5f, .5f, -0.5f}, {.1f, .8f, .1f}},
 
     };
-    for (auto& v : vertices) {
+    for (auto& v : vertices) 
+    {
         v.position += offset;
     }
+
     return std::make_unique<B3DModel>(device, vertices);
 }
 
