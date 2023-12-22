@@ -41,4 +41,5 @@ B3DDescriptorSetLayout::B3DDescriptorSetLayout(B3DDevice& device, std::unordered
 
 B3DDescriptorSetLayout::~B3DDescriptorSetLayout()
 {
+    vkDestroyDescriptorSetLayout(desSetDevice.device(), descriptorSetLayout, nullptr);
 }
