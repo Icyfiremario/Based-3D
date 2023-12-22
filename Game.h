@@ -24,6 +24,7 @@
 #include <stdexcept>
 #include <chrono>
 #include <cmath>
+#include <numeric>
 
 
 class Game

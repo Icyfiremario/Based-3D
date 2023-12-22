@@ -3,8 +3,8 @@
 
 struct GlobalUbo
 {
-    alignas(16) glm::mat4 projectionView{ 1.f };
-    alignas(16) glm::vec3 lightDirection = glm::normalize(glm::vec3{ 1.f, -3.f, -1.f });
+    glm::mat4 projectionView{ 1.f };
+    glm::vec3 lightDirection = glm::normalize(glm::vec3{ 1.f, -3.f, -1.f });
 };
 
 Game::Game()
@@ -18,8 +18,13 @@ Game::~Game()
 
 void Game::run()
 {
-    B3DBuffer globalUboBuffer{ gameDevice, sizeof(GlobalUbo), B3DSwapChain::MAX_FRAMES_IN_FLIGHT, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT, gameDevice.properties.limits.minUniformBufferOffsetAlignment };
-    globalUboBuffer.map();
+    std::vector<std::unique_ptr<B3DBuffer>> ubobuffers(B3DSwapChain::MAX_FRAMES_IN_FLIGHT);
+
+    for (int i = 0; i < ubobuffers.size(); i++)
+    {
+        ubobuffers[i] = std::make_unique<B3DBuffer>(gameDevice, sizeof(GlobalUbo), 1, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT);
+        ubobuffers[i]->map();
+    }
 
 	SimpleRenderSystem simpleRenderSystem{ gameDevice, gameRenderer.getSwapChainRenderPass() };
     B3DCamera camera{};
@@ -54,8 +59,8 @@ void Game::run()
             //Update
             GlobalUbo ubo{};
             ubo.projectionView = camera.getProjection() * camera.getView();
-            globalUboBuffer.writeToIndex(&ubo, frameIndex);
-            globalUboBuffer.flushIndex(frameIndex);
+            ubobuffers[frameIndex]->writeToBuffer(&ubo);
+            ubobuffers[frameIndex]->flush();
 
             //Render
 			gameRenderer.beginSwapChainRenderPass(commandBuffer);
