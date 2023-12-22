@@ -204,6 +204,7 @@
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="cube.wobj" />
+    <None Include="desk.wobj" />
     <None Include="ShaderCompile.bat">
       <FileType>Document</FileType>
     </None>

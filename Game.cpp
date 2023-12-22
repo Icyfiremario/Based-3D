@@ -76,18 +76,11 @@ void Game::run()
 void Game::loadGameObjects()
 {
     std::shared_ptr<B3DModel> smoothSphereModel = B3DModel::createModelFromFile(gameDevice, "smooth_sphere.wobj");
-    std::shared_ptr<B3DModel> flatSphereModel = B3DModel::createModelFromFile(gameDevice, "sphere.wobj");
 
     auto smoothSphere = B3DGameObj::createGameObject();
     smoothSphere.model = smoothSphereModel;
     smoothSphere.transform.translation = {.0f, .0f, 2.5f};
     smoothSphere.transform.scale = { .5f, .5f, .5f };
 
-    auto flatSphere = B3DGameObj::createGameObject();
-    flatSphere.model = flatSphereModel;
-    flatSphere.transform.translation = {1.5f, 0.f, 2.5f};
-    flatSphere.transform.scale = { .5f, .5f, .5f };
-
     gameObjects.push_back(std::move(smoothSphere));
-    gameObjects.push_back(std::move(flatSphere));
 }
