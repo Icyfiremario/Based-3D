@@ -135,17 +135,12 @@ std::vector<VkVertexInputBindingDescription> B3DModel::Vertex::getBindingDecript
 
 std::vector<VkVertexInputAttributeDescription> B3DModel::Vertex::getAttributeDecriptions()
 {
-	std::vector<VkVertexInputAttributeDescription> attributeDescritptions(2);
+	std::vector<VkVertexInputAttributeDescription> attributeDescritptions{};
 
-	attributeDescritptions[0].binding = 0;
-	attributeDescritptions[0].location = 0;
-	attributeDescritptions[0].format = VK_FORMAT_R32G32B32_SFLOAT;
-	attributeDescritptions[0].offset = offsetof(Vertex, position);
-
-	attributeDescritptions[1].binding = 0;
-	attributeDescritptions[1].location = 1;
-	attributeDescritptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
-	attributeDescritptions[1].offset = offsetof(Vertex, color);
+	attributeDescritptions.push_back({ 0, 0, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, position) });
+	attributeDescritptions.push_back({ 1, 0, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, color) });
+	attributeDescritptions.push_back({ 2, 0, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, normal) });
+	attributeDescritptions.push_back({ 3, 0, VK_FORMAT_R32G32_SFLOAT, offsetof(Vertex, uv) });
 
 	return attributeDescritptions;
 }
@@ -177,15 +172,7 @@ void B3DModel::Builder::loadModels(const std::string& filePath)
 			{
 				vertex.position = { attrib.vertices[3 * index.vertex_index + 0], attrib.vertices[3 * index.vertex_index + 1], attrib.vertices[3 * index.vertex_index + 2] };
 
-				auto colorIndex = 3 * index.vertex_index + 2;
-				if (colorIndex < attrib.colors.size())
-				{
-					vertex.color = { attrib.colors[colorIndex - 2], attrib.colors[colorIndex - 1], attrib.colors[colorIndex - 0] };
-				}
-				else
-				{
-					vertex.color = { 1.f, 1.f, 1.f };
-				}
+				vertex.color = { attrib.colors[3 * index.vertex_index + 0], attrib.colors[3 * index.vertex_index + 1], attrib.colors[3 * index.vertex_index + 2] };
 			}
 
 			if (index.normal_index >= 0)
