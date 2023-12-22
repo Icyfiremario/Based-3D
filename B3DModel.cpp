@@ -50,12 +50,22 @@ void B3DModel::createVertexBuffers(const std::vector<Vertex>& verticies)
 
 	VkDeviceSize bufferSize = sizeof(verticies[0]) * vertexCount;
 
-	modelDevice.createBuffer(bufferSize, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, vertexBuffer, vertexBufferMemory);
+	VkBuffer stagingBuffer;
+	VkDeviceMemory stagingBufferMemory;
+
+	modelDevice.createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, stagingBuffer, stagingBufferMemory);
 
 	void* data;
-	vkMapMemory(modelDevice.device(), vertexBufferMemory, 0, bufferSize, 0, &data);
+	vkMapMemory(modelDevice.device(), stagingBufferMemory, 0, bufferSize, 0, &data);
 	memcpy(data, verticies.data(), static_cast<size_t>(bufferSize));
-	vkUnmapMemory(modelDevice.device(), vertexBufferMemory);
+	vkUnmapMemory(modelDevice.device(), stagingBufferMemory);
+
+	modelDevice.createBuffer(bufferSize, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, vertexBuffer, vertexBufferMemory);
+
+	modelDevice.copyBuffer(stagingBuffer, vertexBuffer, bufferSize);
+
+	vkDestroyBuffer(modelDevice.device(), stagingBuffer, nullptr);
+	vkFreeMemory(modelDevice.device(), stagingBufferMemory, nullptr);
 }
 
 void B3DModel::createIndexBuffers(const std::vector<uint32_t>& indices)
@@ -68,12 +78,22 @@ void B3DModel::createIndexBuffers(const std::vector<uint32_t>& indices)
 
 	VkDeviceSize bufferSize = sizeof(indices[0]) * indexCount;
 
-	modelDevice.createBuffer(bufferSize, VK_BUFFER_USAGE_INDEX_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, indexBuffer, indexBufferMemory);
+	VkBuffer stagingBuffer;
+	VkDeviceMemory stagingBufferMemory;
+
+	modelDevice.createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, stagingBuffer, stagingBufferMemory);
 
 	void* data;
-	vkMapMemory(modelDevice.device(), indexBufferMemory, 0, bufferSize, 0, &data);
+	vkMapMemory(modelDevice.device(), stagingBufferMemory, 0, bufferSize, 0, &data);
 	memcpy(data, indices.data(), static_cast<size_t>(bufferSize));
-	vkUnmapMemory(modelDevice.device(), indexBufferMemory);
+	vkUnmapMemory(modelDevice.device(), stagingBufferMemory);
+
+	modelDevice.createBuffer(bufferSize, VK_BUFFER_USAGE_INDEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, indexBuffer, indexBufferMemory);
+
+	modelDevice.copyBuffer(stagingBuffer, indexBuffer, bufferSize);
+
+	vkDestroyBuffer(modelDevice.device(), stagingBuffer, nullptr);
+	vkFreeMemory(modelDevice.device(), stagingBufferMemory, nullptr);
 }
 
 std::vector<VkVertexInputBindingDescription> B3DModel::Vertex::getBindingDecriptions()
