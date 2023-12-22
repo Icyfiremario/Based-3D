@@ -69,7 +69,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\TinyObjectLoader\include;C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -96,7 +96,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\TinyObjectLoader\include;C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -121,7 +121,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\TinyObjectLoader\include;C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -146,7 +146,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\TinyObjectLoader\include;C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -189,6 +189,7 @@
     <ClInclude Include="B3DPipeline.h" />
     <ClInclude Include="B3DRenderer.h" />
     <ClInclude Include="B3DSwapChain.h" />
+    <ClInclude Include="B3DUtils.h" />
     <ClInclude Include="B3DWindow.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="keyboardMovementController.h" />
@@ -204,6 +205,7 @@
     <None Include="simple_shader.frag.spv" />
     <None Include="simple_shader.vert" />
     <None Include="simple_shader.vert.spv" />
+    <None Include="sphere.wobj" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Based 3D1.rc" />

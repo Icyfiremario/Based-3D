@@ -20,6 +20,10 @@
     <Filter Include="Git Files">
       <UniqueIdentifier>{7f558650-1388-4e46-a1a1-cf385423bef4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{7f0c78ab-0762-43bc-8167-da698d0c1acf}</UniqueIdentifier>
+      <Extensions>wobj</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,6 +100,9 @@
     <ClInclude Include="keyboardMovementController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="B3DUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="simple_shader.vert">
@@ -115,6 +122,9 @@
     </None>
     <None Include="ShaderCompile.bat">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="sphere.wobj">
+      <Filter>Assets</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
