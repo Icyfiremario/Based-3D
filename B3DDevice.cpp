@@ -451,7 +451,7 @@ void B3DDevice::createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemo
 
 	if (vkCreateBuffer(device_, &bufferInfo, nullptr, &buffer) != VK_SUCCESS)
 	{
-		throw std::runtime_error("Failed to create vertex buffer!");
+		throw std::runtime_error("Failed to create buffer!");
 	}
 
 	VkMemoryRequirements memRequirements;
@@ -464,7 +464,7 @@ void B3DDevice::createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemo
 
 	if (vkAllocateMemory(device_, &allocInfo, nullptr, &bufferMemory) != VK_SUCCESS)
 	{
-		throw std::runtime_error("Failed to allocate vertex buffer memory!");
+		throw std::runtime_error("Failed to allocate buffer memory!");
 	}
 
 	vkBindBufferMemory(device_, buffer, bufferMemory, 0);

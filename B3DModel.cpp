@@ -1,14 +1,21 @@
 #include "B3DModel.h"
 
-B3DModel::B3DModel(B3DDevice& device, const std::vector<Vertex>& verticies, const B3DModel::Builder& builder) : modelDevice{device}
+B3DModel::B3DModel(B3DDevice& device, const B3DModel::Builder& builder) : modelDevice{device}
 {
-	createVertexBuffers(verticies);
+	createVertexBuffers(builder.vertices);
+	createIndexBuffers(builder.indices);
 }
 
 B3DModel::~B3DModel()
 {
 	vkDestroyBuffer(modelDevice.device(), vertexBuffer, nullptr);
 	vkFreeMemory(modelDevice.device(), vertexBufferMemory, nullptr);
+
+	if (hasIndexBuffer)
+	{
+		vkDestroyBuffer(modelDevice.device(), indexBuffer, nullptr);
+		vkFreeMemory(modelDevice.device(), indexBufferMemory, nullptr);
+	}
 }
 
 void B3DModel::bind(VkCommandBuffer commandBuffer)
@@ -16,11 +23,23 @@ void B3DModel::bind(VkCommandBuffer commandBuffer)
 	VkBuffer buffers[] = { vertexBuffer };
 	VkDeviceSize offsets[] = { 0 };
 	vkCmdBindVertexBuffers(commandBuffer, 0, 1, buffers, offsets);
+
+	if (hasIndexBuffer)
+	{
+		vkCmdBindIndexBuffer(commandBuffer, indexBuffer, 0, VK_INDEX_TYPE_UINT32);
+	}
 }
 
 void B3DModel::draw(VkCommandBuffer commandBuffer)
 {
-	vkCmdDraw(commandBuffer, vertexCount, 1, 0, 0);
+	if (hasIndexBuffer)
+	{
+		vkCmdDrawIndexed(commandBuffer, indexCount, 1, 0, 0, 0);
+	}
+	else
+	{
+		vkCmdDraw(commandBuffer, vertexCount, 1, 0, 0);
+	}
 }
 
 void B3DModel::createVertexBuffers(const std::vector<Vertex>& verticies)
@@ -35,8 +54,26 @@ void B3DModel::createVertexBuffers(const std::vector<Vertex>& verticies)
 
 	void* data;
 	vkMapMemory(modelDevice.device(), vertexBufferMemory, 0, bufferSize, 0, &data);
-	memcpy(data, verticies.data(), static_cast<uint32_t>(bufferSize));
+	memcpy(data, verticies.data(), static_cast<size_t>(bufferSize));
 	vkUnmapMemory(modelDevice.device(), vertexBufferMemory);
+}
+
+void B3DModel::createIndexBuffers(const std::vector<uint32_t>& indices)
+{
+	indexCount = static_cast<uint32_t>(indices.size());
+
+	hasIndexBuffer = indexCount > 0;
+
+	if (!hasIndexBuffer) return;
+
+	VkDeviceSize bufferSize = sizeof(indices[0]) * indexCount;
+
+	modelDevice.createBuffer(bufferSize, VK_BUFFER_USAGE_INDEX_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, indexBuffer, indexBufferMemory);
+
+	void* data;
+	vkMapMemory(modelDevice.device(), indexBufferMemory, 0, bufferSize, 0, &data);
+	memcpy(data, indices.data(), static_cast<size_t>(bufferSize));
+	vkUnmapMemory(modelDevice.device(), indexBufferMemory);
 }
 
 std::vector<VkVertexInputBindingDescription> B3DModel::Vertex::getBindingDecriptions()

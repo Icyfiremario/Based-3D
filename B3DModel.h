@@ -29,7 +29,7 @@ class B3DModel
 			std::vector<uint32_t> indices{};
 		};
 
-		B3DModel(B3DDevice& device, const std::vector<Vertex>& verticies, const B3DModel::Builder &builder);
+		B3DModel(B3DDevice& device, const B3DModel::Builder &builder);
 		~B3DModel();
 
 		B3DModel(const B3DModel&) = delete;
@@ -46,5 +46,12 @@ class B3DModel
 		VkDeviceMemory vertexBufferMemory;
 		uint32_t vertexCount;
 
+		VkBuffer indexBuffer;
+		VkDeviceMemory indexBufferMemory;
+		uint32_t indexCount;
+
+		bool hasIndexBuffer = false;
+
 		void createVertexBuffers(const std::vector<Vertex>& verticies);
+		void createIndexBuffers(const std::vector<uint32_t>& indices);
 };

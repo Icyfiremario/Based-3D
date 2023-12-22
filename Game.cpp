@@ -49,9 +49,11 @@ void Game::run()
 	vkDeviceWaitIdle(gameDevice.device());
 }
 
-std::unique_ptr<B3DModel> createCubeModel(B3DDevice& device, glm::vec3 offset) {
-    std::vector<B3DModel::Vertex> vertices
-    {
+std::unique_ptr<B3DModel> createCubeModel(B3DDevice& device, glm::vec3 offset) 
+{
+    B3DModel::Builder modelBuilder{};
+
+    modelBuilder.vertices = {
 
         // left face (white)
         {{-.5f, -.5f, -.5f}, {.9f, .9f, .9f}},
@@ -102,12 +104,13 @@ std::unique_ptr<B3DModel> createCubeModel(B3DDevice& device, glm::vec3 offset) {
         {{.5f, .5f, -0.5f}, {.1f, .8f, .1f}},
 
     };
-    for (auto& v : vertices) 
+
+    for (auto& v : modelBuilder.vertices) 
     {
         v.position += offset;
     }
 
-    return std::make_unique<B3DModel>(device, vertices);
+    return std::make_unique<B3DModel>(device, modelBuilder);
 }
 
 void Game::loadGameObjects()
