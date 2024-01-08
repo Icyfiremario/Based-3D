@@ -135,9 +135,6 @@
     <None Include=".gitignore">
       <Filter>Git Files</Filter>
     </None>
-    <None Include="ShaderCompile.bat">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="sphere.wobj">
       <Filter>Assets</Filter>
     </None>
@@ -149,6 +146,9 @@
     </None>
     <None Include="desk.wobj">
       <Filter>Assets</Filter>
+    </None>
+    <None Include="ShaderCompile.bat">
+      <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
