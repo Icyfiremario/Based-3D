@@ -51,6 +51,13 @@ class B3DSwapChain
 
 	private:
 
+#ifndef _DEBUG
+		const bool logSwapChain = false;
+#else
+		const bool logSwapChain = true;
+#endif // !_DEBUG
+
+
 		B3DDevice& device;
 
 		

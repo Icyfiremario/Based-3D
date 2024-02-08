@@ -62,6 +62,12 @@ class B3DDevice
 
 
 	private:
+
+#ifndef _DEBUG
+		const bool logDevice = false;
+#else
+		const bool logDevice = true;
+#endif // !_DEBUG
 		
 		VkInstance instance;
 		VkDebugUtilsMessengerEXT debugMessanger;

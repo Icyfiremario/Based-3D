@@ -131,7 +131,10 @@ void B3DDevice::pickPhysicalDevice()
 		throw std::runtime_error("Failed to find Vulkan compatable GPUs! Check your GPU manufactures website to get the latest drivers.");
 	}
 
-	std::cout << "Device count: " << deviceCount << std::endl;
+	if (logDevice)
+	{
+		std::cout << "Device count: " << deviceCount << std::endl;
+	}
 	std::vector<VkPhysicalDevice> devices(deviceCount);
 	vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
@@ -150,7 +153,10 @@ void B3DDevice::pickPhysicalDevice()
 	}
 
 	vkGetPhysicalDeviceProperties(physicalDevice, &properties);
-	std::cout << "Physical device: " << properties.deviceName << std::endl;
+	if (logDevice)
+	{
+		std::cout << "Physical device: " << properties.deviceName << std::endl;
+	}
 }
 
 void B3DDevice::createlogicalDevice()
@@ -341,19 +347,31 @@ void B3DDevice::hasGlfwRequiredInstanceExtensions()
 	std::vector<VkExtensionProperties> extensions(extentionCount);
 	vkEnumerateInstanceExtensionProperties(nullptr, &extentionCount, extensions.data());
 
-	std::cout << "Available extensions:" << std::endl;
+	if (logDevice)
+	{
+		std::cout << "Available extensions:" << std::endl;
+	}
 	std::unordered_set<std::string> available;
 	for (const auto& extension : extensions)
 	{
-		std::cout << "\t" << extension.extensionName << std::endl;
+		if (logDevice)
+		{
+			std::cout << "\t" << extension.extensionName << std::endl;
+		}
 		available.insert(extension.extensionName);
 	}
 
-	std::cout << "Required extensions:" << std::endl;
+	if (logDevice)
+	{
+		std::cout << "Required extensions:" << std::endl;
+	}
 	auto requiredExtensions = getRequiredExtensions();
 	for (const auto& required : requiredExtensions)
 	{
-		std::cout << "\t" << required << std::endl;
+		if (logDevice)
+		{
+			std::cout << "\t" << required << std::endl;
+		}
 		if (available.find(required) == available.end())
 		{
 			throw std::runtime_error("Missing required glfw extension!");
