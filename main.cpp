@@ -6,7 +6,6 @@
 #include <iostream>
 #include <stdexcept>
 
-
 //Plog
 #include <plog/Log.h>
 #include <plog/Initializers/RollingFileInitializer.h>
@@ -30,6 +29,8 @@ int main()
 
 #ifdef _DEBUG
 		std::cerr << e.what() << std::endl;
+#else
+		std::cerr << "Fatal error! Check runtime log." << std::endl;
 #endif // _DEBUG
 
 		return EXIT_FAILURE;
