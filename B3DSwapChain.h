@@ -2,10 +2,10 @@
 
 #include "B3DDevice.h"
 
-//Vulkan headers
+//Vulkan
 #include <vulkan/vulkan.h>
 
-//std headers
+//STD
 #include <memory>
 #include <string>
 #include <vector>
@@ -16,6 +16,9 @@
 #include <limits>
 #include <set>
 #include <stdexcept>
+
+//Plog
+#include <plog/Log.h>
 
 //Swap chain for Based 3D
 class B3DSwapChain

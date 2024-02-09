@@ -1,9 +1,14 @@
 #pragma once
 
+//Local
 #include "B3DWindow.h"
 
+//STD
 #include <string>
 #include <vector>
+
+//Plog
+#include <plog/Log.h>
 
 struct SwapChainSupportDetails
 {

@@ -45,6 +45,8 @@ void Game::run()
 
     auto currentTime = std::chrono::high_resolution_clock::now();
 
+    PLOGI << "Game loop started";
+
 	while (!gameWindow.shouldClose())
 	{
 		glfwPollEvents();
@@ -85,6 +87,8 @@ void Game::run()
 
 void Game::loadGameObjects()
 {
+    PLOGI << "Loading 3D models";
+
     std::shared_ptr<B3DModel> smoothSphereModel = B3DModel::createModelFromFile(gameDevice, "smooth_sphere.wobj");
 
     auto smoothSphere = B3DGameObj::createGameObject();

@@ -27,6 +27,9 @@
 #include <cmath>
 #include <numeric>
 
+//Plog
+#include <plog/Log.h>
+
 
 class Game
 {

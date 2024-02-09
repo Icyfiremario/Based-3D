@@ -26,7 +26,12 @@ int main()
 	}
 	catch (const std::exception& e)
 	{
+		PLOGF << e.what();
+
+#ifdef _DEBUG
 		std::cerr << e.what() << std::endl;
+#endif // _DEBUG
+
 		return EXIT_FAILURE;
 	}
 

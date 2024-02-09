@@ -7,7 +7,10 @@
 
 static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity, VkDebugUtilsMessageTypeFlagsEXT messageType, const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData, void* pUserData)
 {
-	std::cerr << "validation layer: " << pCallbackData->pMessage << std::endl;
+	PLOGE << "Validation layer: " << pCallbackData->pMessage;
+#ifdef _DEBUG
+	std::cerr << "Validation layer: " << pCallbackData->pMessage << std::endl;
+#endif // _DEBUG
 
 	return VK_FALSE;
 }
@@ -64,7 +67,7 @@ void B3DDevice::createInstance()
 {
 	if (enableValidationLayers && !checkValidationLayerSupport())
 	{
-		throw std::runtime_error("validation layers requested, but not available!");
+		throw std::runtime_error("Validation layers requested, but not available!");
 	}
 
 	VkApplicationInfo appInfo = {};
@@ -100,7 +103,7 @@ void B3DDevice::createInstance()
 
 	if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS)
 	{
-		throw std::runtime_error("failed to create instance!");
+		throw std::runtime_error("Failed to create instance!");
 	}
 
 	hasGlfwRequiredInstanceExtensions();

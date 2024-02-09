@@ -386,7 +386,7 @@ VkPresentModeKHR B3DSwapChain::chooseSwapPresentMode(const std::vector<VkPresent
 	{
 		if (availablePresentMode == VK_PRESENT_MODE_MAILBOX_KHR)
 		{
-
+			PLOGI << "Present mode: Mailbox";
 			if (logSwapChain)
 			{
 				std::cout << "Present mode: Mailbox" << std::endl;
@@ -403,6 +403,7 @@ VkPresentModeKHR B3DSwapChain::chooseSwapPresentMode(const std::vector<VkPresent
 	//   }
 	// }
 
+	PLOGI << "Present mode: V-Sync";
 	if (logSwapChain)
 	{
 		std::cout << "Present mode: V-Sync" << std::endl;
