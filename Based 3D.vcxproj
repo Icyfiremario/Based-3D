@@ -69,12 +69,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\TinyObjectLoader\include;C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;C:\Users\robmr\Desktop\James\Dev\Libraries\plog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Icyfi\Documents\Code libraries\TinyObjectLoader\Include;C:\Users\Icyfi\Documents\Code libraries\glfw-3.3.9.bin.WIN64\include;C:\VulkanSDK\1.3.275.0\Include;C:\Users\Icyfi\Documents\Code libraries\plog-1.1.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\lib-vc2022;C:\VulkanSDK\1.3.250.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Icyfi\Documents\Code libraries\glfw-3.3.9.bin.WIN64\lib-vc2022;C:\VulkanSDK\1.3.275.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Version>0.1</Version>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -96,12 +96,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\TinyObjectLoader\include;C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;C:\Users\robmr\Desktop\James\Dev\Libraries\plog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Icyfi\Documents\Code libraries\TinyObjectLoader\Include;C:\Users\Icyfi\Documents\Code libraries\glfw-3.3.9.bin.WIN64\include;C:\VulkanSDK\1.3.275.0\Include;C:\Users\Icyfi\Documents\Code libraries\plog-1.1.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\lib-vc2022;C:\VulkanSDK\1.3.250.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Icyfi\Documents\Code libraries\glfw-3.3.9.bin.WIN64\lib-vc2022;C:\VulkanSDK\1.3.275.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Version>0.1</Version>
     </Link>
@@ -121,12 +121,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\TinyObjectLoader\include;C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;C:\Users\robmr\Desktop\James\Dev\Libraries\plog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Icyfi\Documents\Code libraries\TinyObjectLoader\Include;C:\Users\Icyfi\Documents\Code libraries\glfw-3.3.9.bin.WIN64\include;C:\VulkanSDK\1.3.275.0\Include;C:\Users\Icyfi\Documents\Code libraries\plog-1.1.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\lib-vc2022;C:\VulkanSDK\1.3.250.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Icyfi\Documents\Code libraries\glfw-3.3.9.bin.WIN64\lib-vc2022;C:\VulkanSDK\1.3.275.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Version>0.1</Version>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -146,12 +146,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\TinyObjectLoader\include;C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\include;C:\VulkanSDK\1.3.250.0\Include;C:\Users\robmr\Desktop\James\Dev\Libraries\plog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Icyfi\Documents\Code libraries\TinyObjectLoader\Include;C:\Users\Icyfi\Documents\Code libraries\glfw-3.3.9.bin.WIN64\include;C:\VulkanSDK\1.3.275.0\Include;C:\Users\Icyfi\Documents\Code libraries\plog-1.1.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Users\robmr\Desktop\James\Dev\Libraries\glfw\lib-vc2022;C:\VulkanSDK\1.3.250.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Icyfi\Documents\Code libraries\glfw-3.3.9.bin.WIN64\lib-vc2022;C:\VulkanSDK\1.3.275.0\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Version>0.1</Version>
     </Link>

@@ -14,6 +14,7 @@ SimpleRenderSystem::SimpleRenderSystem(B3DDevice& device, VkRenderPass renderPas
 
 SimpleRenderSystem::~SimpleRenderSystem()
 {
+	vkDestroyPipelineLayout(rSysDevice.device(), rSysPipelineLayout, nullptr);
 }
 
 void SimpleRenderSystem::renderGameObjects(FrameInfo &frameInfo, std::vector<B3DGameObj>& gameObjects)
