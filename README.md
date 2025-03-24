@@ -1,7 +1,7 @@
 # Based 3D
 
 ## About
-Based 3D is a 3D game engine that uses Vulkan and GLFW. Like my other game engine, this is an ongoing project and will be updated in the future.
+Based 3D is a 3D game engine that uses Vulkan and GLFW. Like my other game engine, this is outdated and will be replaced by Based-Engine-CMake.
 
 ## Status
 Creates a window and renders a sphere using the wavefront format[^2].
